@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuro Router Demo</title>
+</head>
+<body>
+  <script type="module">
+
+    import Nuro from 'https://cdn.skypack.dev/nuro';
+    import NuroRouter from 'https://cdn.skypack.dev/nuro-router';
+
+    Nuro.install(NuroRouter)
+
+    Nuro.mount(class {
+      $template =/*html*/ `
+        <div>
+          <h1>Hello world</h1>
+          <ul>
+            <li>
+              <router-link to="/" class="nav-link">Go to Home</router-link>
+            </li>
+            <li>
+              <router-link to="/about" class="nav-link">Go to About</router-link>
+            </li>
+          </ul>
+          <router-switch>
+            <p path="/about">About page!!!</p>
+            <p path="/">Home page!!!</p>
+          </router-switch>
+          <router-switch>
+            <p path="/foo">Foo page!!!</p>
+          </router-switch>
+        </div>
+      `
+    })
+    
+  </script>
+</body>
+</html>
