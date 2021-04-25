@@ -1,8 +1,14 @@
 {
   "name": "nuro-router",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "A simple SPA router for Nuro apps",
   "main": "./build/dist/nuro-router.js",
+  "module": "./build/compiled/index.js",
+  "exports": {
+    "require": "./build/dist/nuro-router.js",
+    "import": "./build/compiled/index.js"
+  },
+  "types": "./build/compiled/index.d.js",
   "scripts": {
     "format": "prettier --print-width 100 --no-semi false --single-quote true --write \"./**/*.ts\"",
     "compile": "tsc",
