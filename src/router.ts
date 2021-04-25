@@ -5,5 +5,5 @@ export interface Router {
 }
 
 export interface PathChangeCallback {
-  (currentPath: string, previousPath: string): void
+  (newPath: string, previousPath: string): void
 }

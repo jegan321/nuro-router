@@ -20,7 +20,7 @@ export class BrowserHistoryRouter implements Router {
     const previousPath = this.getCurrentPath()
     window.history.pushState(null, '', newPath)
     this.subscriptions.forEach(callback => {
-      callback(previousPath, newPath)
+      callback(newPath, previousPath)
     })
   }
 
