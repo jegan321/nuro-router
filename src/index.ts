@@ -1,7 +1,7 @@
 import { BrowserHistoryRouter } from './browser-history-router'
 import { RouterLink } from './components/router-link'
 import { RouterSwitch } from './components/router-switch'
-import { Router } from './router'
+import { PathChangeCallback, Router } from './router'
 
 const NuroRouter = {
   install(Nuro: any) {
@@ -14,4 +14,4 @@ const NuroRouter = {
   }
 }
 
-export default NuroRouter
+export { NuroRouter, Router, PathChangeCallback }
