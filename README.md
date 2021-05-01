@@ -13,6 +13,10 @@ A simple SPA router for Nuro apps
 ```bash
 npm install nuro-router
 ```
+or 
+```html
+<script src="path/to/nuro-router.js"></script>
+```
 
 ## Usage
 First install NuroRouter as a plugin
