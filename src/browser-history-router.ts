@@ -12,15 +12,14 @@ export class BrowserHistoryRouter implements Router {
 
   goTo(newPath?: string) {
     if (newPath) {
+      window.history.pushState(null, '', newPath)
       this.publishPathChange(newPath)
     }
   }
 
   publishPathChange(newPath: string) {
-    const previousPath = this.getCurrentPath()
-    window.history.pushState(null, '', newPath)
     this.subscriptions.forEach(callback => {
-      callback(newPath, previousPath)
+      callback(newPath)
     })
   }
 

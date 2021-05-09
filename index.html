@@ -24,9 +24,17 @@
             <li>
               <router-link to="/about" class="nav-link">Go to About</router-link>
             </li>
+            <li>
+              <router-link to="/products" class="nav-link">Go to Products</router-link>
+            </li>
+            <li>
+              <router-link to="/login" class="nav-link">Go to Login</router-link>
+            </li>
           </ul>
           <router-switch>
+            <p path="/login">Login page!!!</p>
             <p path="/about">About page!!!</p>
+            <p path="/products">Products page!!!</p>
             <p path="/">Home page!!!</p>
           </router-switch>
           <router-switch>

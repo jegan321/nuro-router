@@ -1,6 +1,6 @@
 {
   "name": "nuro-router",
-  "version": "0.2.5",
+  "version": "0.3.0",
   "description": "A simple SPA router for Nuro apps",
   "main": "./build/dist/nuro-router.js",
   "module": "./build/compiled/index.js",
@@ -14,7 +14,8 @@
     "compile": "tsc",
     "bundle": "rollup -c",
     "build": "npm run format && npm run compile && npm run bundle",
-    "start": "npm run build && serve -s"
+    "start": "npm run build && serve -s",
+    "watch": "nodemon --watch src -e ts --exec npm run start"
   },
   "files": [
     "src",
