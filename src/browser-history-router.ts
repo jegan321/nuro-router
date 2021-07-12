@@ -30,4 +30,11 @@ export class BrowserHistoryRouter implements Router {
   subscribeToPathChange(pathChangeCallback: PathChangeCallback) {
     this.subscriptions.push(pathChangeCallback)
   }
+
+  unsubscribeToPathChange(pathChangeCallback: PathChangeCallback) {
+    const index = this.subscriptions.indexOf(pathChangeCallback)
+    if (index > -1) {
+      this.subscriptions.splice(index, 1)
+    }
+  }
 }
