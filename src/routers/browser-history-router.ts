@@ -2,6 +2,7 @@ import { PathChangeCallback, Router } from './router'
 
 export class BrowserHistoryRouter implements Router {
   subscriptions: PathChangeCallback[] = []
+  navigateWithJS = true
 
   constructor() {
     window.addEventListener('popstate', () => {

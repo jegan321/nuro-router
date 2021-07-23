@@ -7,14 +7,14 @@
   <title>Nuro Router Demo</title>
 </head>
 <body>
-  <script src="https://unpkg.com/nuro@0.3.5/build/dist/nuro.umd.js"></script>
+  <script src="https://unpkg.com/nuro@0.4.1/dist/nuro.umd.js"></script>
   <script src="build/dist/nuro-router.umd.js"></script>
   <script type="module">
 
     Nuro.install(NuroRouter)
 
     Nuro.mount(class {
-      $template =/*html*/ `
+      template =/*html*/ `
         <div>
           <h1>Hello world</h1>
           <ul>

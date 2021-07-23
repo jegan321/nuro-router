@@ -1,4 +1,4 @@
-import { Router } from '../router'
+import { Router } from '../routers/router'
 
 interface Props {
   children: {

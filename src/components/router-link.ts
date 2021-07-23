@@ -1,4 +1,4 @@
-import { Router } from '../router'
+import { Router } from '../routers/router'
 
 interface Props {
   to?: string
@@ -20,7 +20,9 @@ export class RouterLink {
     delete anchorProps.to
     delete anchorProps.children
     anchorProps['href'] = this.props.to
-    anchorProps['@click'] = this.handleClick
+    if (this.$router.navigateWithJS) {
+      anchorProps['@click'] = this.handleClick
+    }
     return createElement('a', anchorProps, this.props.children)
   }
 
