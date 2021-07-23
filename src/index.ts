@@ -5,7 +5,7 @@ import { Options, PathChangeCallback, Router } from './routers/router'
 import { HardRefreshRouter } from './routers/hard-refresh-router'
 
 const NuroRouter = {
-  install(Nuro: any, options: Options) {
+  install(Nuro: any, options?: Options) {
     const router = getRouterImplementation(options)
     Nuro.mixin({
       $router: router
@@ -15,10 +15,10 @@ const NuroRouter = {
   }
 }
 
-function getRouterImplementation(options: Options): Router {
-  if (options.mode === 'browser-history') {
+function getRouterImplementation(options?: Options): Router {
+  if (options?.mode === 'browser-history') {
     return new BrowserHistoryRouter()
-  } else if (options.mode === 'hard-refresh') {
+  } else if (options?.mode == 'hard-refresh') {
     return new HardRefreshRouter()
   } else {
     // Default
