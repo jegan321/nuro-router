@@ -1,6 +1,6 @@
 {
   "name": "nuro-router",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "A simple SPA router for Nuro apps",
   "main": "./build/dist/nuro-router.js",
   "module": "./build/compiled/index.js",

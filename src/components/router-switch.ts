@@ -41,7 +41,7 @@ export class RouterSwitch {
     this.currentPath = newPath
   }
 
-  beforeMount() {
+  afterMount() {
     this.currentPath = this.$router.getCurrentPath()
     this.$router.subscribeToPathChange(this.changePath)
   }
