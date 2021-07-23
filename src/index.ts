@@ -16,14 +16,17 @@ const NuroRouter = {
 }
 
 function getRouterImplementation(options?: Options): Router {
+  let router = null
   if (options?.mode === 'browser-history') {
-    return new BrowserHistoryRouter()
+    router = new BrowserHistoryRouter()
   } else if (options?.mode == 'hard-refresh') {
-    return new HardRefreshRouter()
-  } else {
-    // Default
-    return new HardRefreshRouter()
+    router = new HardRefreshRouter()
   }
+  if (router === null) {
+    // Default
+    router = new HardRefreshRouter()
+  }
+  return router
 }
 
 export { NuroRouter, Router, PathChangeCallback }
