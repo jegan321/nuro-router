@@ -5,7 +5,7 @@ export class HardRefreshRouter implements Router {
 
   goTo(newPath?: string) {
     if (newPath) {
-      window.location.pathname = newPath
+      window.location.href = newPath
     }
   }
 

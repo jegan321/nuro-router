@@ -13,7 +13,7 @@
 
     Nuro.install(NuroRouter)
 
-    Nuro.mount(class {
+    let app = Nuro.mount(class {
       template =/*html*/ `
         <div>
           <h1>Hello world</h1>
@@ -44,6 +44,10 @@
         </div>
       `
     })
+
+    setTimeout(() => {
+      app.$router.goTo('somepath')
+    }, 500)
     
   </script>
 </body>
