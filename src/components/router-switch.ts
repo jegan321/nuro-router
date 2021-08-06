@@ -1,40 +1,60 @@
 import { Router } from '../routers/router'
+import { match } from '../util/match'
+import { parseSegments } from '../util/segments'
 
 interface Props {
-  children: {
-    attrs: {
-      path?: string
-    }
-  }[]
+  routes?: RouteRecord[]
+}
+
+interface RouteRecord {
+  path: string
+  component: any // Nuro Component
 }
 
 export class RouterSwitch {
-  currentPath: String = ''
-
+  currentPath: string = ''
+  routes?: RouteRecord[]
   props!: Props
   $router!: Router
 
   render(createElement: any) {
-    // Get all the child nodes that have a path prop
-    const routes = this.props.children.filter(child => child.attrs.path)
-
-    let defaultRoute
+    // Routes can be passed as a prop or via a subclass constructor
+    let routes: RouteRecord[] = []
+    if (this.props.routes) {
+      routes = this.props.routes
+    } else if (this.routes) {
+      routes = this.routes
+    }
+    const pathSegments = parseSegments(this.currentPath)
+    let routeParams = {}
+    let defaultRoute: RouteRecord | undefined
+    let matchingRoute: RouteRecord | undefined
 
     // Find the route that matches to the brower's current url
-    const matchingRoute = routes.find(route => {
-      if (route.attrs.path === '*') {
+    matchingRoute = routes.find(route => {
+      if (route.path === '*') {
         defaultRoute = route
       }
-      return route.attrs.path === this.currentPath
+      const routeSegments = parseSegments(route.path)
+      const matchResult = match(pathSegments, routeSegments)
+      if (matchResult.isMatch) {
+        routeParams = matchResult.params
+        return true
+      }
     })
 
     // If no match but a default route was found, return default
     if (matchingRoute == null && defaultRoute != null) {
-      return defaultRoute
+      return createComponent(createElement, defaultRoute, routeParams)
     }
 
-    // Return the matching route or an empty div if none matched
-    return matchingRoute ? matchingRoute : createElement('div')
+    // Return empty div if not route matched
+    if (!matchingRoute) {
+      return createElement('div')
+    }
+
+    // Return the matching route
+    return createComponent(createElement, matchingRoute, routeParams)
   }
 
   changePath(newPath: string) {
@@ -49,4 +69,10 @@ export class RouterSwitch {
   beforeUnmount() {
     this.$router.unsubscribeToPathChange(this.changePath)
   }
+}
+
+function createComponent(createElement: any, route: RouteRecord, params: any) {
+  return createElement(route.component, {
+    routeParams: params
+  })
 }

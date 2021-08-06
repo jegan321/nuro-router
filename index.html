@@ -7,47 +7,58 @@
   <title>Nuro Router Demo</title>
 </head>
 <body>
-  <script src="https://unpkg.com/nuro@0.4.1/dist/nuro.umd.js"></script>
-  <script src="build/dist/nuro-router.umd.js"></script>
+  <script src="https://unpkg.com/nuro@0.5.1/dist/nuro.umd.js"></script>
+  <script src="/build/dist/nuro-router.umd.js"></script>
   <script type="module">
 
-    Nuro.install(NuroRouter)
+Nuro.install(NuroRouter)
 
-    let app = Nuro.mount(class {
-      template =/*html*/ `
-        <div>
-          <h1>Hello world</h1>
-          <ul>
-            <li>
-              <router-link to="/" class="nav-link">Go to Home</router-link>
-            </li>
-            <li>
-              <router-link to="/about" class="nav-link">Go to About</router-link>
-            </li>
-            <li>
-              <router-link to="/products" class="nav-link">Go to Products</router-link>
-            </li>
-            <li>
-              <router-link to="/login" class="nav-link">Go to Login</router-link>
-            </li>
-          </ul>
-          <router-switch>
-            <p path="*">Page not found...</p>
-            <p path="/login">Login page!!!</p>
-            <p path="/about">About page!!!</p>
-            <p path="/products">Products page!!!</p>
-            <p path="/">Home page!!!</p>
-          </router-switch>
-          <router-switch>
-            <p path="/foo">Foo page!!!</p>
-          </router-switch>
-        </div>
-      `
-    })
+class FooComponent {
+  template = `<div>Foo</div>`
+}
 
-    setTimeout(() => {
-      app.$router.goTo('somepath')
-    }, 500)
+class BarComponent {
+  template = `<div>Bar {{props.routeParams.id}}</div>`
+}
+
+class HomeComponent {
+  template = `<div>Home</div>`
+}
+
+class PageNotFoundComponent {
+  template = `<div>Page not found</div>`
+}
+
+class AppRouter {
+  template = `
+    <div>
+      <nav>
+        <ul>
+          <li>
+            <router-link to="/">Home</router-link>
+          </li>
+          <li>
+            <router-link to="/foo">Foo</router-link>
+          </li>
+          <li>
+            <router-link to="/bar/123">Bar 123</router-link>
+          </li>
+        </ul>
+      </nav>
+      <router-switch :routes="routes"></router-switch>
+    </div>
+  `
+  beforeInit() {
+    this.routes = [
+      { path: "/foo", component: FooComponent },
+      { path: "/bar/:id", component: BarComponent },
+      { path: "/", component: HomeComponent },
+      { path: "*", component: PageNotFoundComponent}
+    ]
+  }
+}
+
+Nuro.mount(AppRouter)
     
   </script>
 </body>

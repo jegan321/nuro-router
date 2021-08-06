@@ -1,6 +1,7 @@
 import { PathChangeCallback, Router } from './router'
 
 export class BrowserHistoryRouter implements Router {
+  params = {}
   subscriptions: PathChangeCallback[] = []
   navigateWithJS = true
 

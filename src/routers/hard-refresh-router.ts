@@ -1,6 +1,7 @@
 import { PathChangeCallback, Router } from './router'
 
 export class HardRefreshRouter implements Router {
+  params = {}
   navigateWithJS = false
 
   goTo(newPath?: string) {

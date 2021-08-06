@@ -1,7 +1,8 @@
 {
   "name": "nuro-router",
-  "version": "0.4.7",
+  "version": "0.5.2",
   "description": "A simple SPA router for Nuro apps",
+  "type": "module",
   "main": "./build/dist/nuro-router.js",
   "module": "./build/compiled/index.js",
   "exports": {
@@ -14,6 +15,7 @@
     "compile": "tsc",
     "bundle": "rollup -c",
     "build": "npm run format && npm run compile && npm run bundle",
+    "test": "npm run compile && mocha build/compiled/__tests__/",
     "start": "npm run build && serve -s",
     "watch": "nodemon --watch src -e ts --exec npm run start",
     "release": "npm run build && npm publish"
@@ -25,6 +27,8 @@
   "author": "John Egan",
   "license": "MIT",
   "devDependencies": {
+    "@types/mocha": "^9.0.0",
+    "mocha": "^9.0.3",
     "prettier": "1.19.1",
     "rollup": "^1.27.13",
     "serve": "^11.3.2",
